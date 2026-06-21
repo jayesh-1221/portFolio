@@ -2,6 +2,12 @@
     margin: 0 0 1em;
 }
 
+/* Keep the date label readable against either theme background. */
+.vertical-timeline-element-date.timeline-date {
+    color: inherit;
+    opacity: 0.85;
+}
+
 @media only screen and (max-width: 768px) {
     .item-title {
         margin-top: 10px !important;

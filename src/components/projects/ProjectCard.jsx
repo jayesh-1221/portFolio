@@ -35,7 +35,7 @@ const styles = {
 
 const ProjectCard = (props) => {
   const theme = useContext(ThemeContext);
-  const parseBodyText = (text) => <ReactMarkdown children={text} />;
+  const parseBodyText = (text) => <ReactMarkdown>{text}</ReactMarkdown>;
 
   const { project } = props;
 
