@@ -34,7 +34,7 @@ function Home() {
   }, []);
 
   return data ? (
-    <Fade triggerOnce>
+    <Fade triggerOnce className="home-fade-container">
       <div style={styles.mainContainer}>
         <h1 style={styles.nameStyle}>{data?.name}</h1>
         <div style={{ flexDirection: 'row' }}>

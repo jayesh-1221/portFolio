@@ -58,6 +58,15 @@
   height: 100%;
 }
 
+/* The animation wrapper around the Home content must fill the main area so the
+   inner container's height: 100% resolves and the content stays vertically
+   centred. */
+.home-fade-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .section-content-container {
   display: flex;
   flex-direction: column;
