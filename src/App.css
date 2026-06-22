@@ -38,12 +38,12 @@
   width: 40%;
 }
 
-.navbar__link--active::after {
+.navbar__link.active::after {
   transition: all ease-in-out .2s;
   width: 100%;
 }
 
-.navbar__link--active:hover::after {
+.navbar__link.active:hover::after {
   width: 100%;
 }
 
@@ -138,11 +138,11 @@ section.timeline-card-content div.card-description > p {
     width: 0;
   }
 
-  .navbar__link--active::after {
+  .navbar__link.active::after {
     width: 0;
   }
   
-  .navbar__link--active:hover::after {
+  .navbar__link.active:hover::after {
     width: 0;
   }
 
