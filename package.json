@@ -15,7 +15,6 @@
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.26.2",
     "react-social-icons": "^6.18.0",
-    "react-vertical-timeline-component": "^4.0.0",
     "styled-components": "^5.3.11",
     "typewriter-effect": "^2.21.0"
   },

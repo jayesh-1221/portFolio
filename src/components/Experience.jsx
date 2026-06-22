@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { Container } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
+import Timeline from './timeline/Timeline';
+import TimelineItem from './timeline/TimelineItem';
 import Header from './Header';
 import endpoints from '../constants/endpoints';
 import FallbackSpinner from './FallbackSpinner';
-import 'react-vertical-timeline-component/style.min.css';
 import '../css/experience.css';
 
 const styles = {
@@ -24,6 +24,9 @@ const styles = {
   },
   inlineChild: {
     display: 'inline-block',
+  },
+  itemStyle: {
+    marginBottom: 10,
   },
 };
 
@@ -49,22 +52,14 @@ function Experience(props) {
         ? (
           <div className="section-content-container">
             <Container>
-              <VerticalTimeline
-                lineColor={theme.timelineLineColor}
-                animate
-              >
+              <Timeline lineColor={theme.timelineLineColor}>
                 {data.map((item) => (
-                  <VerticalTimelineElement
+                  <TimelineItem
                     key={item.title + item.dateText}
-                    date={item.dateText}
-                    dateClassName="timeline-date"
-                    contentStyle={{
-                      background: theme.cardBackground,
-                      color: theme.color,
-                      border: '1px solid ' + theme.cardBorderColor,
-                    }}
-                    contentArrowStyle={{ borderRight: '7px solid ' + theme.cardBackground }}
-                    iconStyle={{ background: theme.accentColor }}
+                    dateText={item.dateText}
+                    dateInnerStyle={{ background: theme.accentColor }}
+                    style={styles.itemStyle}
+                    bodyContainerStyle={{ color: theme.color }}
                   >
                     <h2 className="item-title">
                       {item.title}
@@ -97,9 +92,9 @@ function Experience(props) {
                         </div>
                       ))}
                     </ul>
-                  </VerticalTimelineElement>
+                  </TimelineItem>
                 ))}
-              </VerticalTimeline>
+              </Timeline>
             </Container>
           </div>
         ) : <FallbackSpinner /> }
