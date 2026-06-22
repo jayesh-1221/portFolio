@@ -79,6 +79,12 @@ $ yarn dev
 Once your server has started, go to this url `http://localhost:3000/` to see the portfolio locally.
 The page will reload if you make edits.
 
+To run the test suite ([Vitest](https://vitest.dev/)):
+
+```bash
+$ npm test
+```
+
 ---
 
 ## Customization Instructions:
@@ -547,7 +553,31 @@ Go to `index.html` (in the project root). Change *title* and *logo* if you want 
 
 Once you finish your setup. You need to put your website online!
 
-I highly recommend to use [Vercel](https://vercel.app) because it is super easy.
+First create a production build. Vite outputs the static site to the `build/` folder:
+
+```bash
+$ npm run build
+```
+
+Deploy that `build/` folder to any static host. I highly recommend [Vercel](https://vercel.app) because it is super easy.
+
+### Single-page-app routing ☝️
+
+This app uses client-side routing (`BrowserRouter`), so a static host must serve `index.html` for **every** path. Without this, refreshing or directly opening a route like `/projects` returns a **404**. Add the matching rewrite for your host:
+
+- **Vercel** — add a `vercel.json` in the project root:
+
+```json
+{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+```
+
+- **Netlify** — add `public/_redirects`:
+
+```
+/*  /index.html  200
+```
+
+- **GitHub Pages** — copy `build/index.html` to `build/404.html` after building.
 
 ## Notable Portfolios made using this template
 
