@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Chrono } from 'react-chrono';
 import { Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import Fade from 'react-reveal';
+import { Fade } from 'react-awesome-reveal';
 import { ThemeContext } from 'styled-components';
 import endpoints from '../constants/endpoints';
 import Header from './Header';
@@ -33,9 +33,9 @@ function Education(props) {
     } else if (window?.innerWidth >= 576 && window?.innerWidth < 768) {
       setWidth('90vw');
     } else if (window?.innerWidth >= 768 && window?.innerWidth < 1024) {
-      setWidth('75vw');
+      setWidth('85vw');
     } else {
-      setWidth('50vw');
+      setWidth('65vw');
     }
   }, []);
 
@@ -43,22 +43,28 @@ function Education(props) {
     <>
       <Header title={header} />
       {data ? (
-        <Fade>
+        <Fade triggerOnce>
           <div style={{ width }} className="section-content-container">
             <Container>
               <Chrono
-                hideControls
+                disableToolbar
                 allowDynamicUpdate
                 useReadMore={false}
                 items={data.education}
                 cardHeight={250}
                 mode={mode}
+                timelinePointDimension={20}
                 theme={{
                   primary: theme.accentColor,
                   secondary: theme.accentColor,
+                  iconBackgroundColor: '#ffffff',
                   cardBgColor: theme.chronoTheme.cardBgColor,
-                  cardForeColor: theme.chronoTheme.cardForeColor,
-                  titleColor: theme.chronoTheme.titleColor,
+                  cardTitleColor: theme.chronoTheme.cardForeColor,
+                  cardSubtitleColor: theme.accentColor,
+                  cardDetailsColor: theme.chronoTheme.cardForeColor,
+                  detailsColor: theme.chronoTheme.cardForeColor,
+                  titleColor: theme.chronoTheme.cardForeColor,
+                  titleColorActive: '#ffffff',
                 }}
               >
                 <div className="chrono-icons">

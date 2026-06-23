@@ -1,6 +1,5 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import React, { useEffect, useState, useContext } from 'react';
-import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 import endpoints from '../constants/endpoints';
@@ -31,7 +30,7 @@ const InternalNavLink = styled(NavLink)`
   &::after {
     background-color: ${(props) => props.theme.accentColor};
   }
-  &.navbar__link--active {
+  &.active {
     color: ${(props) => props.theme.navbarTheme.linkActiveColor};
   }
 `;
@@ -98,8 +97,7 @@ const NavBar = () => {
                 <InternalNavLink
                   key={section.title}
                   onClick={() => setExpanded(false)}
-                  exact={index === 0}
-                  activeClassName="navbar__link--active"
+                  end={index === 0}
                   className="navbar__link"
                   to={section.href}
                   theme={theme}
@@ -117,5 +115,4 @@ const NavBar = () => {
   );
 };
 
-const NavBarWithRouter = withRouter(NavBar);
-export default NavBarWithRouter;
+export default NavBar;

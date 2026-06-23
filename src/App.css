@@ -38,12 +38,12 @@
   width: 40%;
 }
 
-.navbar__link--active::after {
+.navbar__link.active::after {
   transition: all ease-in-out .2s;
   width: 100%;
 }
 
-.navbar__link--active:hover::after {
+.navbar__link.active:hover::after {
   width: 100%;
 }
 
@@ -56,6 +56,15 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+/* The animation wrapper around the Home content must fill the main area so the
+   inner container's height: 100% resolves and the content stays vertically
+   centred. */
+.home-fade-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .section-content-container {
@@ -129,11 +138,11 @@ section.timeline-card-content div.card-description > p {
     width: 0;
   }
 
-  .navbar__link--active::after {
+  .navbar__link.active::after {
     width: 0;
   }
   
-  .navbar__link--active:hover::after {
+  .navbar__link.active:hover::after {
     width: 0;
   }
 

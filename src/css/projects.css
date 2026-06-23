@@ -1,0 +1,17 @@
+/* Keep every project card the same height within a grid row (#17).
+   Cards with and without an image previously differed in height, breaking
+   the alignment of the row. The flex utilities on the Col/Card plus a fixed
+   image aspect keep them uniform and pin footers to the bottom. */
+
+.project-card {
+  height: 100%;
+}
+
+/* react-awesome-reveal wraps the card in a div; make it fill the column so
+   the height:100% chain (Col > Fade > Card) is unbroken. */
+.project-card-img {
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}

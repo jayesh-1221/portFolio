@@ -33,9 +33,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites 📋
 
-You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [NPM](http://npmjs.com)) installed on your computer.
+You'll need [Git](https://git-scm.com) and [Node.js **18+**](https://nodejs.org/en/download/) (which comes with [NPM](http://npmjs.com)) installed on your computer.
 
 Also, you can use [Yarn](https://yarnpkg.com/) instead of NPM ☝️
+
+> This project is built with [Vite](https://vitejs.dev/) and React 18.
 
 ## Setup 🔧
 
@@ -58,27 +60,30 @@ Using NPM: Simply run the below commands.
 
 ```bash
 # Install dependencies
-$ npm install --legacy-peer-deps
-
-# Force audit fix
-$ npm audit fix --force
+$ npm install
 
 # Start the development server
-$ npm start
+$ npm run dev
 ```
 
-Using Yarn: Be aware of that you'll need to delete the `package-lock.json` file if exists before executing the below commands.
+Using Yarn:
 
 ```bash
 # Install dependencies
 $ yarn
 
 # Start the development server
-$ yarn start
+$ yarn dev
 ```
 
 Once your server has started, go to this url `http://localhost:3000/` to see the portfolio locally.
 The page will reload if you make edits.
+
+To run the test suite ([Vitest](https://vitest.dev/)):
+
+```bash
+$ npm test
+```
 
 ---
 
@@ -223,6 +228,10 @@ It has 2 keys, *logo* and *sections*.
             "href": "https://github.com/"
         },
         {
+            "network" : "leetcode",
+            "href": "https://leetcode.com/"
+        },
+        {
             "network" : "email",
             "href": "mailto:test@test.com"
         }
@@ -237,6 +246,7 @@ It has 2 keys, *logo* and *sections*.
 | social.href | link for particular social network |
 
 - we are using [react-social-icons](https://jaketrent.github.io/react-social-icons/) here. you can visit it to see all available social icons to use
+- popular coding profiles like `leetcode` are supported out of the box — just add an entry with that `network` name
 
 ### (4) About Section
 
@@ -535,7 +545,7 @@ export const darkTheme = {
 
 ### Step 3 - EXTRA
 
-Go to `public/index.html`. Change *title* and *logo* if you want to customize it.
+Go to `index.html` (in the project root). Change *title* and *logo* if you want to customize it.
 
 ---
 
@@ -543,7 +553,31 @@ Go to `public/index.html`. Change *title* and *logo* if you want to customize it
 
 Once you finish your setup. You need to put your website online!
 
-I highly recommend to use [Vercel](https://vercel.app) because it is super easy.
+First create a production build. Vite outputs the static site to the `build/` folder:
+
+```bash
+$ npm run build
+```
+
+Deploy that `build/` folder to any static host. I highly recommend [Vercel](https://vercel.app) because it is super easy.
+
+### Single-page-app routing ☝️
+
+This app uses client-side routing (`BrowserRouter`), so a static host must serve `index.html` for **every** path. Without this, refreshing or directly opening a route like `/projects` returns a **404**. Add the matching rewrite for your host:
+
+- **Vercel** — add a `vercel.json` in the project root:
+
+```json
+{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+```
+
+- **Netlify** — add `public/_redirects`:
+
+```
+/*  /index.html  200
+```
+
+- **GitHub Pages** — copy `build/index.html` to `build/404.html` after building.
 
 ## Notable Portfolios made using this template
 

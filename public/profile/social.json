@@ -9,6 +9,10 @@
             "href": "https://github.com/mayankagarwal09"
         },
         {
+            "network" : "leetcode",
+            "href": "https://leetcode.com/"
+        },
+        {
             "network" : "email",
             "href": "mailto:test@test.com"
         }

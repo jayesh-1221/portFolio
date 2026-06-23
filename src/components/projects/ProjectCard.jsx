@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import { Fade } from 'react-awesome-reveal';
 
 const styles = {
   badgeStyle: {
@@ -35,56 +36,61 @@ const styles = {
 
 const ProjectCard = (props) => {
   const theme = useContext(ThemeContext);
-  const parseBodyText = (text) => <ReactMarkdown children={text} />;
+  const parseBodyText = (text) => <ReactMarkdown>{text}</ReactMarkdown>;
 
   const { project } = props;
 
   return (
-    <Col>
-      <Card
-        style={{
-          ...styles.cardStyle,
-          backgroundColor: theme.cardBackground,
-          borderColor: theme.cardBorderColor,
-        }}
-        text={theme.bsSecondaryVariant}
-      >
-        <Card.Img variant="top" src={project?.image} />
-        <Card.Body>
-          <Card.Title style={styles.cardTitleStyle}>{project.title}</Card.Title>
-          <Card.Text style={styles.cardTextStyle}>
-            {parseBodyText(project.bodyText)}
-          </Card.Text>
-        </Card.Body>
+    <Col className="d-flex">
+      <Fade triggerOnce className="w-100 d-flex">
+        <Card
+          className="project-card w-100 d-flex flex-column"
+          style={{
+            ...styles.cardStyle,
+            backgroundColor: theme.cardBackground,
+            borderColor: theme.cardBorderColor,
+          }}
+          text={theme.bsSecondaryVariant}
+        >
+          {project?.image && (
+            <Card.Img className="project-card-img" variant="top" src={project.image} />
+          )}
+          <Card.Body>
+            <Card.Title style={styles.cardTitleStyle}>{project.title}</Card.Title>
+            <Card.Text as="div" style={styles.cardTextStyle}>
+              {parseBodyText(project.bodyText)}
+            </Card.Text>
+          </Card.Body>
 
-        <Card.Body>
-          {project?.links?.map((link) => (
-            <Button
-              key={link.href}
-              style={styles.buttonStyle}
-              variant={'outline-' + theme.bsSecondaryVariant}
-              onClick={() => window.open(link.href, '_blank')}
-            >
-              {link.text}
-            </Button>
-          ))}
-        </Card.Body>
-        {project.tags && (
-          <Card.Footer style={{ backgroundColor: theme.cardFooterBackground }}>
-            {project.tags.map((tag) => (
-              <Badge
-                key={tag}
-                pill
-                bg={theme.bsSecondaryVariant}
-                text={theme.bsPrimaryVariant}
-                style={styles.badgeStyle}
+          <Card.Body className="mt-auto flex-grow-0">
+            {project?.links?.map((link) => (
+              <Button
+                key={link.href}
+                style={styles.buttonStyle}
+                variant={'outline-' + theme.bsSecondaryVariant}
+                onClick={() => window.open(link.href, '_blank')}
               >
-                {tag}
-              </Badge>
+                {link.text}
+              </Button>
             ))}
-          </Card.Footer>
-        )}
-      </Card>
+          </Card.Body>
+          {project.tags && (
+            <Card.Footer style={{ backgroundColor: theme.cardFooterBackground }}>
+              {project.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  pill
+                  bg={theme.bsSecondaryVariant}
+                  text={theme.bsPrimaryVariant}
+                  style={styles.badgeStyle}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </Card.Footer>
+          )}
+        </Card>
+      </Fade>
     </Col>
   );
 };

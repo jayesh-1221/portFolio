@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Container, Col, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import Fade from 'react-reveal';
+import { Fade } from 'react-awesome-reveal';
 import Header from './Header';
 import endpoints from '../constants/endpoints';
 import FallbackSpinner from './FallbackSpinner';
@@ -29,9 +29,9 @@ function About(props) {
   const [data, setData] = useState(null);
 
   const parseIntro = (text) => (
-    <ReactMarkdown
-      children={text}
-    />
+    <ReactMarkdown>
+      {text}
+    </ReactMarkdown>
   );
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function About(props) {
         <Container>
           {data
             ? (
-              <Fade>
+              <Fade triggerOnce>
                 <Row>
                   <Col style={styles.introTextContainer}>
                     {parseIntro(data.about)}
