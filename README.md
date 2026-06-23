@@ -1,4 +1,4 @@
-# Dev Portfolio  [![GitHub](https://img.shields.io/github/license/mayankagarwal09/dev-portfolio?color=blue)](https://github.com/mayankagarwal09/dev-portfolio/blob/master/LICENSE.md) ![visitors](https://visitor-badge.glitch.me/badge?page_id=mayankagarwal09.dev-portfolio&color=blue)
+# Dev Portfolio  [![GitHub](https://img.shields.io/github/license/mayankagarwal09/dev-portfolio?color=blue)](https://github.com/mayankagarwal09/dev-portfolio/blob/master/LICENSE.md) ![visitors](https://visitor-badge.laobi.icu/badge?page_id=mayankagarwal09.dev-portfolio)
 
 ## A minimal portfolio template for Developers!
 
@@ -9,15 +9,33 @@
 
 ## Features
 
-⚡️ Modern UI Design + Reveal Animations\
-⚡️ Made with React\
-⚡️ Fully Responsive\
-⚡️ Easily Customizable\
+⚡️ Modern **bento** UI — dark-first, with a light-theme toggle\
+⚡️ Built with React 18 + Vite\
+⚡️ Design-token theming (restyle the whole site from one place) + refined web fonts\
+⚡️ Reveal animations & fully responsive\
+⚡️ Data-driven and easily customizable via JSON\
 ⚡️ Well organized documentation
 
 ## Demo
 
 To view the demo: **[click here](https://dev-portfolio-mayankagarwal09.vercel.app)**
+
+## Choosing a version 🧭
+
+This template ships in two UI flavors — pick the one you like:
+
+| Version | UI | Get it | Demo |
+| ------- | -- | ------ | ---- |
+| **v2** _(latest)_ | Modern bento, dark-first | default branch / [latest release](https://github.com/mayankagarwal09/dev-portfolio/releases/latest) | [live](https://dev-portfolio-mayankagarwal09.vercel.app) |
+| **v1** | Classic | [`v1`](https://github.com/mayankagarwal09/dev-portfolio/tree/v1) branch / `v1.x` release | [live](https://dev-portfolio-mayankagarwal09-v1.vercel.app) |
+
+```bash
+# New UI (v2) — default
+git clone https://github.com/mayankagarwal09/dev-portfolio
+
+# Classic UI (v1)
+git clone -b v1 https://github.com/mayankagarwal09/dev-portfolio
+```
 
 ## Why do you need a portfolio? ☝️
 
@@ -204,7 +222,8 @@ It has 2 keys, *logo* and *sections*.
 ```
 {
     "name": "Your Name",
-    "roles": ["a Developer", "a Freelancer"]
+    "roles": ["a Developer", "a Freelancer"],
+    "status": "Open to building cool things"
 }
 ```
 
@@ -212,6 +231,7 @@ It has 2 keys, *logo* and *sections*.
 | ----------- | ----------- |
 | name | your name | 
 | roles | string array separated by `,`. mention your roles here | 
+| status | short availability/status label shown (with a dot) above your name. Hidden if omitted. `optional` field | 
 
 #### Social Links
 - open `public/profile/social.json`
@@ -488,60 +508,30 @@ It has 2 keys, *logo* and *sections*.
 
 ### Step 2 - STYLES
 
-Change the color theme of the website -
+The look is driven by **design tokens** in two files:
 
-Go to `/src/theme/themes.js` and change the values of the required components both under lightTheme and darkTheme with your prefered HEX color.
+- `src/theme/themes.js` — the light/dark palettes. Edit the HEX values (background, text, a single `accentColor` plus `accentColor2` used only for gradients, surfaces, borders, shadows, navbar) under `lightTheme` and `darkTheme`.
+- `src/theme/GlobalStyles.js` — publishes those values, plus spacing, radius, shadow, motion and font tokens, as CSS custom properties (`var(--accent)`, `var(--space-4)`, …) consumed across `src/css/`.
 
+The site is **dark by default** (`useDarkMode(true)` in `src/App.jsx`), with a toggle in the navbar.
 
-```theme
-//Default Values
-export const lightTheme = {
-  background: '#fff',
-  color: '#121212',
-  accentColor: '#3D84C6',
-  chronoTheme: {
-    cardBgColor: 'white',
-    cardForeColor: 'black',
-    titleColor: 'white',
-  },
-  timelineLineColor: '#ccc',
-  cardBackground: '#fff',
-  cardFooterBackground: '#f7f7f7',
-  cardBorderColor: '#00000020',
-  navbarTheme: {
-    linkColor: '#dedede',
-    linkHoverColor: '#fefefe',
-    linkActiveColor: '#fefefe',
-  },
-  bsPrimaryVariant: 'light',
-  bsSecondaryVariant: 'dark',
-  socialIconBgColor: '#121212',
-};
-
+```js
+// src/theme/themes.js — dark palette (excerpt)
 export const darkTheme = {
-  background: '#121212',
-  color: '#eee',
-  accentColor: '#3D84C6',
-  chronoTheme: {
-    cardBgColor: '#1B1B1B',
-    cardForeColor: '#eee',
-    titleColor: 'black',
-  },
-  timelineLineColor: '#444',
-  cardBackground: '#060606',
-  cardFooterBackground: '#181818',
-  cardBorderColor: '#ffffff20',
-  navbarTheme: {
-    linkColor: '#dedede',
-    linkHoverColor: '#fefefe',
-    linkActiveColor: '#fefefe',
-  },
-  bsPrimaryVariant: 'dark',
-  bsSecondaryVariant: 'light',
-  socialIconBgColor: '#fefefe',
+  background: '#09090b',
+  color: '#f4f4f5',
+  textMuted: '#a1a1aa',
+  accentColor: '#818cf8',   // the single accent
+  accentColor2: '#c084fc',  // used only for gradients
+  cardBackground: '#141417',
+  cardBorderColor: 'rgba(255, 255, 255, 0.08)',
+  navbarBackground: 'rgba(9, 9, 11, 0.62)',
+  // …shadows, navbarTheme, bsPrimaryVariant / bsSecondaryVariant
 };
-
+// lightTheme mirrors these with light values.
 ```
+
+**Fonts** load in `index.html` (Inter, Fraunces, JetBrains Mono). Change the Google Fonts `<link>` and the `--font-*` tokens to swap them.
 
 ### Step 3 - EXTRA
 
