@@ -35,7 +35,9 @@ function Home() {
       <section className="hero">
         <div className="bento">
           <div className="tile hero-intro span-4 rspan-2">
-            <span className="hero-eyebrow">Available for work</span>
+            {data?.status && (
+              <span className="hero-eyebrow">{data.status}</span>
+            )}
             <h1 className="hero-name">{data?.name}</h1>
             <div className="hero-roles">
               <span>I&apos;m&nbsp;</span>
