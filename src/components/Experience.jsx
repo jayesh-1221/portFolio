@@ -1,37 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
-import { ThemeContext } from 'styled-components';
-import Timeline from './timeline/Timeline';
-import TimelineItem from './timeline/TimelineItem';
+import { Fade } from 'react-awesome-reveal';
 import Header from './Header';
 import endpoints from '../constants/endpoints';
 import FallbackSpinner from './FallbackSpinner';
-import '../css/experience.css';
-
-const styles = {
-  ulStyle: {
-    listStylePosition: 'outside',
-    paddingLeft: 20,
-  },
-  subtitleContainerStyle: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  subtitleStyle: {
-    display: 'inline-block',
-  },
-  inlineChild: {
-    display: 'inline-block',
-  },
-  itemStyle: {
-    marginBottom: 10,
-  },
-};
+import '../css/timeline.css';
 
 function Experience(props) {
-  const theme = useContext(ThemeContext);
   const { header } = props;
   const [data, setData] = useState(null);
 
@@ -47,57 +23,36 @@ function Experience(props) {
   return (
     <>
       <Header title={header} />
-
-      {data
-        ? (
-          <div className="section-content-container">
-            <Container>
-              <Timeline lineColor={theme.timelineLineColor}>
-                {data.map((item) => (
-                  <TimelineItem
-                    key={item.title + item.dateText}
-                    dateText={item.dateText}
-                    dateInnerStyle={{ background: theme.accentColor }}
-                    style={styles.itemStyle}
-                    bodyContainerStyle={{ color: theme.color }}
-                  >
-                    <h2 className="item-title">
-                      {item.title}
-                    </h2>
-                    <div style={styles.subtitleContainerStyle}>
-                      <h4 style={{ ...styles.subtitleStyle, color: theme.accentColor }}>
-                        {item.subtitle}
-                      </h4>
-                      {item.workType && (
-                        <h5 style={styles.inlineChild}>
-                          &nbsp;·
-                          {' '}
-                          {item.workType}
-                        </h5>
-                      )}
+      {data ? (
+        <div className="section-content-container">
+          <Fade triggerOnce>
+            <div className="tl tl--experience">
+              {data.map((item) => (
+                <div className="tl-item" key={item.title + item.dateText}>
+                  <div className="tl-node--dot" />
+                  <div className="tl-card">
+                    <div className="tl-date">{item.dateText}</div>
+                    <h3 className="tl-title">{item.title}</h3>
+                    <div className="tl-subtitle">
+                      <span className="accent">{item.subtitle}</span>
+                      {item.workType ? ` · ${item.workType}` : ''}
                     </div>
-                    <ul style={styles.ulStyle}>
+                    <ul className="tl-list">
                       {item.workDescription.map((point) => (
-                        <div key={point}>
-                          <li>
-                            <ReactMarkdown
-                              components={{
-                                p: 'span',
-                              }}
-                            >
-                              {point}
-                            </ReactMarkdown>
-                          </li>
-                          <br />
-                        </div>
+                        <li key={point}>
+                          <ReactMarkdown components={{ p: 'span' }}>
+                            {point}
+                          </ReactMarkdown>
+                        </li>
                       ))}
                     </ul>
-                  </TimelineItem>
-                ))}
-              </Timeline>
-            </Container>
-          </div>
-        ) : <FallbackSpinner /> }
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Fade>
+        </div>
+      ) : <FallbackSpinner /> }
     </>
   );
 }
