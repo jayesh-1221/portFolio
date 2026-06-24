@@ -28,6 +28,11 @@ old theme/classes need migrating — see `docs/MIGRATION.md`.
 ### Removed
 - `react-chrono` dependency and the legacy vertical-timeline components.
 
+### Fixed
+- Deep-linking or refreshing a non-home route (`/about`, `/projects`, …) — route
+  components are now bundled into proper per-route chunks via a Vite-analyzable
+  dynamic import.
+
 ## [1.0.0]
 
 - Classic UI on the modern Vite + React 18 toolchain.
