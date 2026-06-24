@@ -53,8 +53,7 @@ const NavBar = () => {
     <Navbar
       fixed="top"
       expand="md"
-      bg="dark"
-      variant="dark"
+      variant={theme.bsPrimaryVariant}
       className="navbar-custom"
       expanded={expanded}
     >

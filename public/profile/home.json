@@ -1,4 +1,5 @@
 {
     "name": "Your Name",
-    "roles": ["a Developer", "a Freelancer"]
+    "roles": ["a Developer", "a Freelancer"],
+    "status": "Open to building cool things"
 }

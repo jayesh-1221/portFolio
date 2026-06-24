@@ -1,38 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Container, Col, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Fade } from 'react-awesome-reveal';
 import Header from './Header';
 import endpoints from '../constants/endpoints';
 import FallbackSpinner from './FallbackSpinner';
-
-const styles = {
-  introTextContainer: {
-    margin: 10,
-    flexDirection: 'column',
-    whiteSpace: 'pre-wrap',
-    textAlign: 'left',
-    fontSize: '1.2em',
-    fontWeight: 500,
-  },
-  introImageContainer: {
-    margin: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-  },
-};
+import '../css/about.css';
 
 function About(props) {
   const { header } = props;
   const [data, setData] = useState(null);
-
-  const parseIntro = (text) => (
-    <ReactMarkdown>
-      {text}
-    </ReactMarkdown>
-  );
 
   useEffect(() => {
     fetch(endpoints.about, {
@@ -47,22 +24,20 @@ function About(props) {
     <>
       <Header title={header} />
       <div className="section-content-container">
-        <Container>
-          {data
-            ? (
-              <Fade triggerOnce>
-                <Row>
-                  <Col style={styles.introTextContainer}>
-                    {parseIntro(data.about)}
-                  </Col>
-                  <Col style={styles.introImageContainer}>
-                    <img src={data?.imageSource} alt="profile" />
-                  </Col>
-                </Row>
-              </Fade>
-            )
-            : <FallbackSpinner />}
-        </Container>
+        {data ? (
+          <Fade triggerOnce>
+            <div className="bento">
+              <div className="tile about-bio-tile span-4 rspan-2">
+                <ReactMarkdown>{data.about}</ReactMarkdown>
+              </div>
+              {data?.imageSource && (
+                <div className="tile about-image-tile span-2 rspan-2">
+                  <img src={data.imageSource} alt="profile" />
+                </div>
+              )}
+            </div>
+          </Fade>
+        ) : <FallbackSpinner />}
       </div>
     </>
   );

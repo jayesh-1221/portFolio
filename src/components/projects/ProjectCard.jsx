@@ -1,101 +1,59 @@
-import React, { useContext } from 'react';
-import {
-  Button, Card, Badge, Col,
-} from 'react-bootstrap';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
-import { Fade } from 'react-awesome-reveal';
 
-const styles = {
-  badgeStyle: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    margin: 5,
-  },
-  cardStyle: {
-    borderRadius: 10,
-  },
-  cardTitleStyle: {
-    fontSize: 24,
-    fontWeight: 700,
-  },
-  cardTextStyle: {
-    textAlign: 'left',
-  },
-  linkStyle: {
-    textDecoration: 'none',
-    padding: 10,
-  },
-  buttonStyle: {
-    margin: 5,
-  },
-};
-
-const ProjectCard = (props) => {
-  const theme = useContext(ThemeContext);
+const ProjectCard = ({ project, featured = false }) => {
   const parseBodyText = (text) => <ReactMarkdown>{text}</ReactMarkdown>;
 
-  const { project } = props;
-
   return (
-    <Col className="d-flex">
-      <Fade triggerOnce className="w-100 d-flex">
-        <Card
-          className="project-card w-100 d-flex flex-column"
-          style={{
-            ...styles.cardStyle,
-            backgroundColor: theme.cardBackground,
-            borderColor: theme.cardBorderColor,
-          }}
-          text={theme.bsSecondaryVariant}
-        >
-          {project?.image && (
-            <Card.Img className="project-card-img" variant="top" src={project.image} />
-          )}
-          <Card.Body>
-            <Card.Title style={styles.cardTitleStyle}>{project.title}</Card.Title>
-            <Card.Text as="div" style={styles.cardTextStyle}>
-              {parseBodyText(project.bodyText)}
-            </Card.Text>
-          </Card.Body>
+    <article
+      className={`tile tile--interactive project-card ${
+        featured ? 'span-4 project-card--featured' : 'span-2'
+      }`}
+    >
+      {project?.image && (
+        <div className="project-card__media">
+          <img src={project.image} alt={project.title} />
+        </div>
+      )}
 
-          <Card.Body className="mt-auto flex-grow-0">
-            {project?.links?.map((link) => (
-              <Button
+      <div className="project-card__body">
+        <h3 className="project-card__title">{project.title}</h3>
+        <div className="project-card__text">{parseBodyText(project.bodyText)}</div>
+      </div>
+
+      <div className="project-card__footer">
+        {project?.links?.length > 0 && (
+          <div className="project-card__links">
+            {project.links.map((link) => (
+              <a
                 key={link.href}
-                style={styles.buttonStyle}
-                variant={'outline-' + theme.bsSecondaryVariant}
-                onClick={() => window.open(link.href, '_blank')}
+                className="proj-link"
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {link.text}
-              </Button>
+                {' '}
+                ↗
+              </a>
             ))}
-          </Card.Body>
-          {project.tags && (
-            <Card.Footer style={{ backgroundColor: theme.cardFooterBackground }}>
-              {project.tags.map((tag) => (
-                <Badge
-                  key={tag}
-                  pill
-                  bg={theme.bsSecondaryVariant}
-                  text={theme.bsPrimaryVariant}
-                  style={styles.badgeStyle}
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </Card.Footer>
-          )}
-        </Card>
-      </Fade>
-    </Col>
+          </div>
+        )}
+        {project?.tags?.length > 0 && (
+          <div className="project-card__tags">
+            {project.tags.map((tag) => (
+              <span key={tag} className="project-tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </article>
   );
 };
 
 ProjectCard.propTypes = {
+  featured: PropTypes.bool,
   project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     bodyText: PropTypes.string.isRequired,
