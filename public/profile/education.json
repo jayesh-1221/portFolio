@@ -1,19 +1,19 @@
 {
     "education":[
         {
-            "title": "Jun 20XX - Jun 20YY",
-            "cardTitle": "B.Tech, Computer Science",
-            "cardSubtitle":"XYZ University, City",
-            "cardDetailedText": "CGPA - 9.5",
+            "title": "Jun 2022 - Jun 2026",
+            "cardTitle": "B.Tech, Information Technology",
+            "cardSubtitle":"Pimpri Chinchwad College of Engineering,Pune",
+            "cardDetailedText": " ",
             "icon" : {
-                "src": "images/education/lorem-ipsum.png"
+                "src": "images/education/logo.jpg"
             }
         },
         {
-            "title": "Apr 20XX",
+            "title": "Apr 2022",
             "cardTitle": "High School",
-            "cardSubtitle":"ABC School, City",
-            "cardDetailedText": "Marks - 95%"
+            "cardSubtitle":"Karmaveer Mamasaheb Jagdale Mahavidyalay,Washi",
+            "cardDetailedText": "Marks - 80.3%"
         }
     ]
 }
