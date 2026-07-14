@@ -6,13 +6,10 @@
             "items" : [
      
                 {
-                    "icon": "images/skills/java.png",
-                    "title": "Java"
+                    "icon": "images/skills/cpp logo.png",
+                    "title": "C++"
                 },
-                {
-                    "icon": "images/skills/php.png",
-                    "title": "PHP"
-                },
+        
                 {
                     "icon": "images/skills/js.png",
                     "title": "JavaScript"
@@ -24,15 +21,20 @@
                 {
                     "icon": "images/skills/mysql.png",
                     "title": "MySQL"
+                },
+                {
+                    "icon": "images/skills/mongo-logo.jpg",
+                    "title": "MongoDB"
+                },
+                {
+                    "icon": "images/skills/postgreSQL logo.png",
+                    "title": "PostreSQL"
                 }
         ]},
         {
             "title": "Frameworks & Technologies",
             "items" : [
-                {
-                    "icon": "images/skills/android_new.png",
-                    "title": "Android"
-                },
+               
                 {
                     "icon": "images/skills/react.png",
                     "title": "React"
@@ -46,18 +48,12 @@
         {
             "title" : "Tools & Platforms",
             "items": [
-                {
-                    "icon": "images/skills/android-studio.png",
-                    "title": "Android Studio"
-                },
+               
                 {
                     "icon": "images/skills/git.png",
                     "title": "Git"
-                },
-                {
-                    "icon": "images/skills/docker.png",
-                    "title": "Docker"
                 }
+            
             ]
     }
 ]}
