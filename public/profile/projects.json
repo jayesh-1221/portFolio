@@ -7,11 +7,11 @@
             "links": [
                 {
                     "text": "GitHub",
-                    "href": "https://github.com/mayankagarwal09/dev-portfolio"
+                    "href": ""
                 },
                 {
                     "text": "Live",
-                    "href": "https://mayankagarwal.me"
+                    "href": ""
                 }
             ],
             "tags" : [
@@ -21,13 +21,13 @@
             ]
         },
         {
-            "image" : "images/projects/",
+            "image" : "images/projects/image.png",
             "title": "BlogNest-Blogging Application",
             "bodyText": "A full-stack blogging platform that enables secure authentication, blog creation and management, and category-based content discovery using Node.js, Express.js, MongoDB, and EJS.",
             "links": [
                 {
                     "text": "GitHub",
-                    "href": " "
+                    "href": "https://github.com/jayesh-1221/BlogNest"
                 },
                 {
                     "text": "Live",
@@ -41,24 +41,8 @@
                 "MongoDB",
                 "REST API"
             ]
-        },
-        {
-            "image" : "images/projects/",
-            "title": "Doubt Solver",
-            "bodyText": "- Developed a full-stack real-time doubt-solving platform that connects students with mentors using React, Node.js, Express.js, MongoDB, JWT, and Socket.IO.",
-            "links": [
-                {
-                    "text": "GitHub",
-                    "href": " "
-                }
-            ],
-            "tags" : [
-                "Node.js",
-                "React.js",
-                "Express.js",
-                "PCCOE"
-            ]
         }
+    
       
      
       
